@@ -11,6 +11,18 @@ package us.ihmc.robotDataLogger;
 public class ModelPubSubType implements us.ihmc.pubsub.TopicDataType<us.ihmc.robotDataLogger.Model>
 {
    public static final java.lang.String name = "us::ihmc::robotDataLogger::Model";
+   
+   @Override
+   public final java.lang.String getDefinitionChecksum()
+   {
+   		return "7699a59c197139349f1c1ea5b078e72eff528553f9d02c377de1c82960b36a39";
+   }
+   
+   @Override
+   public final java.lang.String getDefinitionVersion()
+   {
+   		return "local";
+   }
 
    private final us.ihmc.idl.CDR serializeCDR = new us.ihmc.idl.CDR();
    private final us.ihmc.idl.CDR deserializeCDR = new us.ihmc.idl.CDR();

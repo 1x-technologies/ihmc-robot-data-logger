@@ -11,6 +11,18 @@ package us.ihmc.robotDataLogger;
 public class YoRegistryDefinitionPubSubType implements us.ihmc.pubsub.TopicDataType<us.ihmc.robotDataLogger.YoRegistryDefinition>
 {
    public static final java.lang.String name = "us::ihmc::robotDataLogger::YoRegistryDefinition";
+   
+   @Override
+   public final java.lang.String getDefinitionChecksum()
+   {
+   		return "5a0b6f3710053e8cf0f6caefce0bf99888aaf1a504471f9a5d5f2faf1e6518b0";
+   }
+   
+   @Override
+   public final java.lang.String getDefinitionVersion()
+   {
+   		return "local";
+   }
 
    private final us.ihmc.idl.CDR serializeCDR = new us.ihmc.idl.CDR();
    private final us.ihmc.idl.CDR deserializeCDR = new us.ihmc.idl.CDR();
@@ -40,7 +52,9 @@ public class YoRegistryDefinitionPubSubType implements us.ihmc.pubsub.TopicDataT
    {
       int initial_alignment = current_alignment;
 
-      current_alignment += 2 + us.ihmc.idl.CDR.alignment(current_alignment, 2);
+      current_alignment += 8 + us.ihmc.idl.CDR.alignment(current_alignment, 8);
+
+      current_alignment += 8 + us.ihmc.idl.CDR.alignment(current_alignment, 8);
 
       current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4) + 255 + 1;
 
@@ -56,7 +70,10 @@ public class YoRegistryDefinitionPubSubType implements us.ihmc.pubsub.TopicDataT
    {
       int initial_alignment = current_alignment;
 
-      current_alignment += 2 + us.ihmc.idl.CDR.alignment(current_alignment, 2);
+      current_alignment += 8 + us.ihmc.idl.CDR.alignment(current_alignment, 8);
+
+
+      current_alignment += 8 + us.ihmc.idl.CDR.alignment(current_alignment, 8);
 
 
       current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4) + data.getName().length() + 1;
@@ -67,7 +84,9 @@ public class YoRegistryDefinitionPubSubType implements us.ihmc.pubsub.TopicDataT
 
    public static void write(us.ihmc.robotDataLogger.YoRegistryDefinition data, us.ihmc.idl.CDR cdr)
    {
-      cdr.write_type_3(data.getParent());
+      cdr.write_type_11(data.getId());
+
+      cdr.write_type_11(data.getParent());
 
       if(data.getName().length() <= 255)
       cdr.write_type_d(data.getName());else
@@ -77,7 +96,9 @@ public class YoRegistryDefinitionPubSubType implements us.ihmc.pubsub.TopicDataT
 
    public static void read(us.ihmc.robotDataLogger.YoRegistryDefinition data, us.ihmc.idl.CDR cdr)
    {
-      data.setParent(cdr.read_type_3());
+      data.setId(cdr.read_type_11());
+      	
+      data.setParent(cdr.read_type_11());
       	
       cdr.read_type_d(data.getName());	
 
@@ -86,14 +107,16 @@ public class YoRegistryDefinitionPubSubType implements us.ihmc.pubsub.TopicDataT
    @Override
    public final void serialize(us.ihmc.robotDataLogger.YoRegistryDefinition data, us.ihmc.idl.InterchangeSerializer ser)
    {
-      ser.write_type_3("parent", data.getParent());
+      ser.write_type_11("id", data.getId());
+      ser.write_type_11("parent", data.getParent());
       ser.write_type_d("name", data.getName());
    }
 
    @Override
    public final void deserialize(us.ihmc.idl.InterchangeSerializer ser, us.ihmc.robotDataLogger.YoRegistryDefinition data)
    {
-      data.setParent(ser.read_type_3("parent"));
+      data.setId(ser.read_type_11("id"));
+      data.setParent(ser.read_type_11("parent"));
       ser.read_type_d("name", data.getName());
    }
 

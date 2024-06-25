@@ -8,9 +8,9 @@ import us.ihmc.pubsub.TopicDataType;
 
 public class SCS1YoGraphicObjectMessage extends Packet<SCS1YoGraphicObjectMessage> implements Settable<SCS1YoGraphicObjectMessage>, EpsilonComparable<SCS1YoGraphicObjectMessage>
 {
-   public int registrationID_;
+   public long registrationID_;
    public java.lang.StringBuilder name_;
-   public us.ihmc.idl.IDLSequence.Integer  yoVariableIndex_;
+   public us.ihmc.idl.IDLSequence.Long  yoVariableIndex_;
    public us.ihmc.idl.IDLSequence.Double  constants_;
    public us.ihmc.robotDataLogger.SCS1AppearanceDefinitionMessage appearance_;
    public java.lang.StringBuilder listName_;
@@ -18,7 +18,7 @@ public class SCS1YoGraphicObjectMessage extends Packet<SCS1YoGraphicObjectMessag
    public SCS1YoGraphicObjectMessage()
    {
       name_ = new java.lang.StringBuilder(255);
-      yoVariableIndex_ = new us.ihmc.idl.IDLSequence.Integer (1024, "type_3");
+      yoVariableIndex_ = new us.ihmc.idl.IDLSequence.Long (1024, "type_11");
 
       constants_ = new us.ihmc.idl.IDLSequence.Double (128, "type_6");
 
@@ -47,11 +47,11 @@ public class SCS1YoGraphicObjectMessage extends Packet<SCS1YoGraphicObjectMessag
 
    }
 
-   public void setRegistrationID(int registrationID)
+   public void setRegistrationID(long registrationID)
    {
       registrationID_ = registrationID;
    }
-   public int getRegistrationID()
+   public long getRegistrationID()
    {
       return registrationID_;
    }
@@ -72,7 +72,7 @@ public class SCS1YoGraphicObjectMessage extends Packet<SCS1YoGraphicObjectMessag
    }
 
 
-   public us.ihmc.idl.IDLSequence.Integer  getYoVariableIndex()
+   public us.ihmc.idl.IDLSequence.Long  getYoVariableIndex()
    {
       return yoVariableIndex_;
    }
@@ -126,7 +126,7 @@ public class SCS1YoGraphicObjectMessage extends Packet<SCS1YoGraphicObjectMessag
 
       if (!us.ihmc.idl.IDLTools.epsilonEqualsStringBuilder(this.name_, other.name_, epsilon)) return false;
 
-      if (!us.ihmc.idl.IDLTools.epsilonEqualsIntegerSequence(this.yoVariableIndex_, other.yoVariableIndex_, epsilon)) return false;
+      if (!us.ihmc.idl.IDLTools.epsilonEqualsLongSequence(this.yoVariableIndex_, other.yoVariableIndex_, epsilon)) return false;
 
       if (!us.ihmc.idl.IDLTools.epsilonEqualsDoubleSequence(this.constants_, other.constants_, epsilon)) return false;
 

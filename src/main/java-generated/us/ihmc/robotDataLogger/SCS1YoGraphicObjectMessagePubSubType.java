@@ -11,6 +11,18 @@ package us.ihmc.robotDataLogger;
 public class SCS1YoGraphicObjectMessagePubSubType implements us.ihmc.pubsub.TopicDataType<us.ihmc.robotDataLogger.SCS1YoGraphicObjectMessage>
 {
    public static final java.lang.String name = "us::ihmc::robotDataLogger::SCS1YoGraphicObjectMessage";
+   
+   @Override
+   public final java.lang.String getDefinitionChecksum()
+   {
+   		return "5a0b6f3710053e8cf0f6caefce0bf99888aaf1a504471f9a5d5f2faf1e6518b0";
+   }
+   
+   @Override
+   public final java.lang.String getDefinitionVersion()
+   {
+   		return "local";
+   }
 
    private final us.ihmc.idl.CDR serializeCDR = new us.ihmc.idl.CDR();
    private final us.ihmc.idl.CDR deserializeCDR = new us.ihmc.idl.CDR();
@@ -40,10 +52,10 @@ public class SCS1YoGraphicObjectMessagePubSubType implements us.ihmc.pubsub.Topi
    {
       int initial_alignment = current_alignment;
 
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);
+      current_alignment += 8 + us.ihmc.idl.CDR.alignment(current_alignment, 8);
 
       current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4) + 255 + 1;
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);current_alignment += (1024 * 2) + us.ihmc.idl.CDR.alignment(current_alignment, 2);
+      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);current_alignment += (1024 * 8) + us.ihmc.idl.CDR.alignment(current_alignment, 8);
 
       current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);current_alignment += (128 * 8) + us.ihmc.idl.CDR.alignment(current_alignment, 8);
 
@@ -63,13 +75,13 @@ public class SCS1YoGraphicObjectMessagePubSubType implements us.ihmc.pubsub.Topi
    {
       int initial_alignment = current_alignment;
 
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);
+      current_alignment += 8 + us.ihmc.idl.CDR.alignment(current_alignment, 8);
 
 
       current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4) + data.getName().length() + 1;
 
       current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);
-      current_alignment += (data.getYoVariableIndex().size() * 2) + us.ihmc.idl.CDR.alignment(current_alignment, 2);
+      current_alignment += (data.getYoVariableIndex().size() * 8) + us.ihmc.idl.CDR.alignment(current_alignment, 8);
 
 
       current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);
@@ -86,7 +98,7 @@ public class SCS1YoGraphicObjectMessagePubSubType implements us.ihmc.pubsub.Topi
 
    public static void write(us.ihmc.robotDataLogger.SCS1YoGraphicObjectMessage data, us.ihmc.idl.CDR cdr)
    {
-      cdr.write_type_2(data.getRegistrationID());
+      cdr.write_type_11(data.getRegistrationID());
 
       if(data.getName().length() <= 255)
       cdr.write_type_d(data.getName());else
@@ -109,7 +121,7 @@ public class SCS1YoGraphicObjectMessagePubSubType implements us.ihmc.pubsub.Topi
 
    public static void read(us.ihmc.robotDataLogger.SCS1YoGraphicObjectMessage data, us.ihmc.idl.CDR cdr)
    {
-      data.setRegistrationID(cdr.read_type_2());
+      data.setRegistrationID(cdr.read_type_11());
       	
       cdr.read_type_d(data.getName());	
       cdr.read_type_e(data.getYoVariableIndex());	
@@ -122,7 +134,7 @@ public class SCS1YoGraphicObjectMessagePubSubType implements us.ihmc.pubsub.Topi
    @Override
    public final void serialize(us.ihmc.robotDataLogger.SCS1YoGraphicObjectMessage data, us.ihmc.idl.InterchangeSerializer ser)
    {
-      ser.write_type_2("registrationID", data.getRegistrationID());
+      ser.write_type_11("registrationID", data.getRegistrationID());
       ser.write_type_d("name", data.getName());
       ser.write_type_e("yoVariableIndex", data.getYoVariableIndex());
       ser.write_type_e("constants", data.getConstants());
@@ -134,7 +146,7 @@ public class SCS1YoGraphicObjectMessagePubSubType implements us.ihmc.pubsub.Topi
    @Override
    public final void deserialize(us.ihmc.idl.InterchangeSerializer ser, us.ihmc.robotDataLogger.SCS1YoGraphicObjectMessage data)
    {
-      data.setRegistrationID(ser.read_type_2("registrationID"));
+      data.setRegistrationID(ser.read_type_11("registrationID"));
       ser.read_type_d("name", data.getName());
       ser.read_type_e("yoVariableIndex", data.getYoVariableIndex());
       ser.read_type_e("constants", data.getConstants());

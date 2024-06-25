@@ -8,7 +8,7 @@ import us.ihmc.pubsub.TopicDataType;
 
 public class VariableChangeRequest extends Packet<VariableChangeRequest> implements Settable<VariableChangeRequest>, EpsilonComparable<VariableChangeRequest>
 {
-   public int variableID_;
+   public long variableID_;
    public double requestedValue_;
 
    public VariableChangeRequest()
@@ -29,11 +29,11 @@ public class VariableChangeRequest extends Packet<VariableChangeRequest> impleme
 
    }
 
-   public void setVariableID(int variableID)
+   public void setVariableID(long variableID)
    {
       variableID_ = variableID;
    }
-   public int getVariableID()
+   public long getVariableID()
    {
       return variableID_;
    }

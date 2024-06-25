@@ -2,7 +2,7 @@ module us{
 module ihmc{
 module robotDataLogger{
 	struct VariableChangeRequest{
-		long variableID;
+		long long variableID;
 		double requestedValue;
 	};
 };

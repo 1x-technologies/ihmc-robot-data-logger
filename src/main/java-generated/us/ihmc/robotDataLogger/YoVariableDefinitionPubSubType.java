@@ -11,6 +11,18 @@ package us.ihmc.robotDataLogger;
 public class YoVariableDefinitionPubSubType implements us.ihmc.pubsub.TopicDataType<us.ihmc.robotDataLogger.YoVariableDefinition>
 {
    public static final java.lang.String name = "us::ihmc::robotDataLogger::YoVariableDefinition";
+   
+   @Override
+   public final java.lang.String getDefinitionChecksum()
+   {
+   		return "5a0b6f3710053e8cf0f6caefce0bf99888aaf1a504471f9a5d5f2faf1e6518b0";
+   }
+   
+   @Override
+   public final java.lang.String getDefinitionVersion()
+   {
+   		return "local";
+   }
 
    private final us.ihmc.idl.CDR serializeCDR = new us.ihmc.idl.CDR();
    private final us.ihmc.idl.CDR deserializeCDR = new us.ihmc.idl.CDR();
@@ -40,11 +52,13 @@ public class YoVariableDefinitionPubSubType implements us.ihmc.pubsub.TopicDataT
    {
       int initial_alignment = current_alignment;
 
+      current_alignment += 8 + us.ihmc.idl.CDR.alignment(current_alignment, 8);
+
       current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4) + 255 + 1;
       current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4) + 255 + 1;
       current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);
 
-      current_alignment += 2 + us.ihmc.idl.CDR.alignment(current_alignment, 2);
+      current_alignment += 8 + us.ihmc.idl.CDR.alignment(current_alignment, 8);
 
       current_alignment += 2 + us.ihmc.idl.CDR.alignment(current_alignment, 2);
 
@@ -71,6 +85,9 @@ public class YoVariableDefinitionPubSubType implements us.ihmc.pubsub.TopicDataT
    {
       int initial_alignment = current_alignment;
 
+      current_alignment += 8 + us.ihmc.idl.CDR.alignment(current_alignment, 8);
+
+
       current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4) + data.getName().length() + 1;
 
       current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4) + data.getDescription().length() + 1;
@@ -78,7 +95,7 @@ public class YoVariableDefinitionPubSubType implements us.ihmc.pubsub.TopicDataT
       current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);
 
 
-      current_alignment += 2 + us.ihmc.idl.CDR.alignment(current_alignment, 2);
+      current_alignment += 8 + us.ihmc.idl.CDR.alignment(current_alignment, 8);
 
 
       current_alignment += 2 + us.ihmc.idl.CDR.alignment(current_alignment, 2);
@@ -105,6 +122,8 @@ public class YoVariableDefinitionPubSubType implements us.ihmc.pubsub.TopicDataT
 
    public static void write(us.ihmc.robotDataLogger.YoVariableDefinition data, us.ihmc.idl.CDR cdr)
    {
+      cdr.write_type_11(data.getId());
+
       if(data.getName().length() <= 255)
       cdr.write_type_d(data.getName());else
           throw new RuntimeException("name field exceeds the maximum length");
@@ -116,7 +135,7 @@ public class YoVariableDefinitionPubSubType implements us.ihmc.pubsub.TopicDataT
       cdr.write_type_c(data.getType().ordinal());
 
 
-      cdr.write_type_3(data.getRegistry());
+      cdr.write_type_11(data.getRegistry());
 
       cdr.write_type_3(data.getEnumType());
 
@@ -135,11 +154,13 @@ public class YoVariableDefinitionPubSubType implements us.ihmc.pubsub.TopicDataT
 
    public static void read(us.ihmc.robotDataLogger.YoVariableDefinition data, us.ihmc.idl.CDR cdr)
    {
+      data.setId(cdr.read_type_11());
+      	
       cdr.read_type_d(data.getName());	
       cdr.read_type_d(data.getDescription());	
       data.setType(us.ihmc.robotDataLogger.YoType.values[cdr.read_type_c()]);
       	
-      data.setRegistry(cdr.read_type_3());
+      data.setRegistry(cdr.read_type_11());
       	
       data.setEnumType(cdr.read_type_3());
       	
@@ -159,10 +180,11 @@ public class YoVariableDefinitionPubSubType implements us.ihmc.pubsub.TopicDataT
    @Override
    public final void serialize(us.ihmc.robotDataLogger.YoVariableDefinition data, us.ihmc.idl.InterchangeSerializer ser)
    {
+      ser.write_type_11("id", data.getId());
       ser.write_type_d("name", data.getName());
       ser.write_type_d("description", data.getDescription());
       ser.write_type_c("type", data.getType());
-      ser.write_type_3("registry", data.getRegistry());
+      ser.write_type_11("registry", data.getRegistry());
       ser.write_type_3("enumType", data.getEnumType());
       ser.write_type_7("allowNullValues", data.getAllowNullValues());
       ser.write_type_7("isParameter", data.getIsParameter());
@@ -174,11 +196,12 @@ public class YoVariableDefinitionPubSubType implements us.ihmc.pubsub.TopicDataT
    @Override
    public final void deserialize(us.ihmc.idl.InterchangeSerializer ser, us.ihmc.robotDataLogger.YoVariableDefinition data)
    {
+      data.setId(ser.read_type_11("id"));
       ser.read_type_d("name", data.getName());
       ser.read_type_d("description", data.getDescription());
       data.setType((us.ihmc.robotDataLogger.YoType)ser.read_type_c("type", us.ihmc.robotDataLogger.YoType.class));
 
-      data.setRegistry(ser.read_type_3("registry"));
+      data.setRegistry(ser.read_type_11("registry"));
       data.setEnumType(ser.read_type_3("enumType"));
       data.setAllowNullValues(ser.read_type_7("allowNullValues"));
       data.setIsParameter(ser.read_type_7("isParameter"));

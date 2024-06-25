@@ -8,10 +8,11 @@ import us.ihmc.pubsub.TopicDataType;
 
 public class YoVariableDefinition extends Packet<YoVariableDefinition> implements Settable<YoVariableDefinition>, EpsilonComparable<YoVariableDefinition>
 {
+   public long id_;
    public java.lang.StringBuilder name_;
    public java.lang.StringBuilder description_;
    public us.ihmc.robotDataLogger.YoType type_;
-   public int registry_;
+   public long registry_;
    public int enumType_;
    public boolean allowNullValues_;
    public boolean isParameter_;
@@ -33,6 +34,8 @@ public class YoVariableDefinition extends Packet<YoVariableDefinition> implement
 
    public void set(YoVariableDefinition other)
    {
+      id_ = other.id_;
+
       name_.setLength(0);
       name_.append(other.name_);
 
@@ -55,6 +58,15 @@ public class YoVariableDefinition extends Packet<YoVariableDefinition> implement
 
       loadStatus_ = other.loadStatus_;
 
+   }
+
+   public void setId(long id)
+   {
+      id_ = id;
+   }
+   public long getId()
+   {
+      return id_;
    }
 
    public void setName(java.lang.String name)
@@ -96,11 +108,11 @@ public class YoVariableDefinition extends Packet<YoVariableDefinition> implement
       return type_;
    }
 
-   public void setRegistry(int registry)
+   public void setRegistry(long registry)
    {
       registry_ = registry;
    }
-   public int getRegistry()
+   public long getRegistry()
    {
       return registry_;
    }
@@ -177,6 +189,8 @@ public class YoVariableDefinition extends Packet<YoVariableDefinition> implement
       if(other == null) return false;
       if(other == this) return true;
 
+      if (!us.ihmc.idl.IDLTools.epsilonEqualsPrimitive(this.id_, other.id_, epsilon)) return false;
+
       if (!us.ihmc.idl.IDLTools.epsilonEqualsStringBuilder(this.name_, other.name_, epsilon)) return false;
 
       if (!us.ihmc.idl.IDLTools.epsilonEqualsStringBuilder(this.description_, other.description_, epsilon)) return false;
@@ -210,6 +224,8 @@ public class YoVariableDefinition extends Packet<YoVariableDefinition> implement
 
       YoVariableDefinition otherMyClass = (YoVariableDefinition) other;
 
+      if(this.id_ != otherMyClass.id_) return false;
+
       if (!us.ihmc.idl.IDLTools.equals(this.name_, otherMyClass.name_)) return false;
 
       if (!us.ihmc.idl.IDLTools.equals(this.description_, otherMyClass.description_)) return false;
@@ -240,6 +256,8 @@ public class YoVariableDefinition extends Packet<YoVariableDefinition> implement
       StringBuilder builder = new StringBuilder();
 
       builder.append("YoVariableDefinition {");
+      builder.append("id=");
+      builder.append(this.id_);      builder.append(", ");
       builder.append("name=");
       builder.append(this.name_);      builder.append(", ");
       builder.append("description=");

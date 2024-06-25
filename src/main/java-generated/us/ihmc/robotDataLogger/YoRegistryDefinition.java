@@ -8,7 +8,13 @@ import us.ihmc.pubsub.TopicDataType;
 
 public class YoRegistryDefinition extends Packet<YoRegistryDefinition> implements Settable<YoRegistryDefinition>, EpsilonComparable<YoRegistryDefinition>
 {
-   public int parent_;
+   /**
+   		 * Id of the registry
+   		 *
+   		 * This is a long long field to allow generating unique ID's per thread/process to support future dynamic registries.
+   		 */
+   public long id_;
+   public long parent_;
    public java.lang.StringBuilder name_;
 
    public YoRegistryDefinition()
@@ -24,6 +30,8 @@ public class YoRegistryDefinition extends Packet<YoRegistryDefinition> implement
 
    public void set(YoRegistryDefinition other)
    {
+      id_ = other.id_;
+
       parent_ = other.parent_;
 
       name_.setLength(0);
@@ -31,11 +39,30 @@ public class YoRegistryDefinition extends Packet<YoRegistryDefinition> implement
 
    }
 
-   public void setParent(int parent)
+   /**
+   		 * Id of the registry
+   		 *
+   		 * This is a long long field to allow generating unique ID's per thread/process to support future dynamic registries.
+   		 */
+   public void setId(long id)
+   {
+      id_ = id;
+   }
+   /**
+   		 * Id of the registry
+   		 *
+   		 * This is a long long field to allow generating unique ID's per thread/process to support future dynamic registries.
+   		 */
+   public long getId()
+   {
+      return id_;
+   }
+
+   public void setParent(long parent)
    {
       parent_ = parent;
    }
-   public int getParent()
+   public long getParent()
    {
       return parent_;
    }
@@ -73,6 +100,8 @@ public class YoRegistryDefinition extends Packet<YoRegistryDefinition> implement
       if(other == null) return false;
       if(other == this) return true;
 
+      if (!us.ihmc.idl.IDLTools.epsilonEqualsPrimitive(this.id_, other.id_, epsilon)) return false;
+
       if (!us.ihmc.idl.IDLTools.epsilonEqualsPrimitive(this.parent_, other.parent_, epsilon)) return false;
 
       if (!us.ihmc.idl.IDLTools.epsilonEqualsStringBuilder(this.name_, other.name_, epsilon)) return false;
@@ -90,6 +119,8 @@ public class YoRegistryDefinition extends Packet<YoRegistryDefinition> implement
 
       YoRegistryDefinition otherMyClass = (YoRegistryDefinition) other;
 
+      if(this.id_ != otherMyClass.id_) return false;
+
       if(this.parent_ != otherMyClass.parent_) return false;
 
       if (!us.ihmc.idl.IDLTools.equals(this.name_, otherMyClass.name_)) return false;
@@ -104,6 +135,8 @@ public class YoRegistryDefinition extends Packet<YoRegistryDefinition> implement
       StringBuilder builder = new StringBuilder();
 
       builder.append("YoRegistryDefinition {");
+      builder.append("id=");
+      builder.append(this.id_);      builder.append(", ");
       builder.append("parent=");
       builder.append(this.parent_);      builder.append(", ");
       builder.append("name=");

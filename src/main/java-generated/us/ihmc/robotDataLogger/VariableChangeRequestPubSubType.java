@@ -11,6 +11,18 @@ package us.ihmc.robotDataLogger;
 public class VariableChangeRequestPubSubType implements us.ihmc.pubsub.TopicDataType<us.ihmc.robotDataLogger.VariableChangeRequest>
 {
    public static final java.lang.String name = "us::ihmc::robotDataLogger::VariableChangeRequest";
+   
+   @Override
+   public final java.lang.String getDefinitionChecksum()
+   {
+   		return "3e4eef8e8419efa009008d99fa428f52a46e5e859952926b08eafa561bc0adab";
+   }
+   
+   @Override
+   public final java.lang.String getDefinitionVersion()
+   {
+   		return "local";
+   }
 
    private final us.ihmc.idl.CDR serializeCDR = new us.ihmc.idl.CDR();
    private final us.ihmc.idl.CDR deserializeCDR = new us.ihmc.idl.CDR();
@@ -40,7 +52,7 @@ public class VariableChangeRequestPubSubType implements us.ihmc.pubsub.TopicData
    {
       int initial_alignment = current_alignment;
 
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);
+      current_alignment += 8 + us.ihmc.idl.CDR.alignment(current_alignment, 8);
 
       current_alignment += 8 + us.ihmc.idl.CDR.alignment(current_alignment, 8);
 
@@ -57,7 +69,7 @@ public class VariableChangeRequestPubSubType implements us.ihmc.pubsub.TopicData
    {
       int initial_alignment = current_alignment;
 
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);
+      current_alignment += 8 + us.ihmc.idl.CDR.alignment(current_alignment, 8);
 
 
       current_alignment += 8 + us.ihmc.idl.CDR.alignment(current_alignment, 8);
@@ -69,7 +81,7 @@ public class VariableChangeRequestPubSubType implements us.ihmc.pubsub.TopicData
 
    public static void write(us.ihmc.robotDataLogger.VariableChangeRequest data, us.ihmc.idl.CDR cdr)
    {
-      cdr.write_type_2(data.getVariableID());
+      cdr.write_type_11(data.getVariableID());
 
       cdr.write_type_6(data.getRequestedValue());
 
@@ -77,7 +89,7 @@ public class VariableChangeRequestPubSubType implements us.ihmc.pubsub.TopicData
 
    public static void read(us.ihmc.robotDataLogger.VariableChangeRequest data, us.ihmc.idl.CDR cdr)
    {
-      data.setVariableID(cdr.read_type_2());
+      data.setVariableID(cdr.read_type_11());
       	
       data.setRequestedValue(cdr.read_type_6());
       	
@@ -87,14 +99,14 @@ public class VariableChangeRequestPubSubType implements us.ihmc.pubsub.TopicData
    @Override
    public final void serialize(us.ihmc.robotDataLogger.VariableChangeRequest data, us.ihmc.idl.InterchangeSerializer ser)
    {
-      ser.write_type_2("variableID", data.getVariableID());
+      ser.write_type_11("variableID", data.getVariableID());
       ser.write_type_6("requestedValue", data.getRequestedValue());
    }
 
    @Override
    public final void deserialize(us.ihmc.idl.InterchangeSerializer ser, us.ihmc.robotDataLogger.VariableChangeRequest data)
    {
-      data.setVariableID(ser.read_type_2("variableID"));
+      data.setVariableID(ser.read_type_11("variableID"));
       data.setRequestedValue(ser.read_type_6("requestedValue"));
    }
 

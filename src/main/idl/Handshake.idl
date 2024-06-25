@@ -3,7 +3,13 @@ module ihmc{
 module robotDataLogger{
 	struct YoRegistryDefinition
 	{
-		unsigned short parent;
+		/**
+		 * Id of the registry
+		 *
+		 * This is a long long field to allow generating unique ID's per thread/process to support future dynamic registries.
+		 */
+		long long id;
+		long long parent;
 		string name;
 	};
 	
@@ -32,10 +38,11 @@ module robotDataLogger{
 	
 	struct YoVariableDefinition
 	{
+		long long id;
 		string name;
 		string description;
 		YoType type;
-		unsigned short registry;
+		long long registry;
 		unsigned short enumType;
 		boolean allowNullValues;
 		boolean isParameter;
@@ -62,10 +69,10 @@ module robotDataLogger{
 	
 	struct SCS1YoGraphicObjectMessage
 	{
-		long registrationID;
+		long long registrationID;
 		string name;
 		
-		sequence<unsigned short, 1024> yoVariableIndex;
+		sequence<long long, 1024> yoVariableIndex;
 		sequence<double, 128> constants;
 		SCS1AppearanceDefinitionMessage appearance;
 		string listName;
@@ -97,6 +104,12 @@ module robotDataLogger{
 	
 	struct Handshake
 	{
+		/** 
+		  * Set to true if ID's are explicitly defined for registries/variables. 
+		  * This field is to allow for backwards compatibility with previous logs.
+		  */
+		bool hasExplicitId;
+	
 		double dt;
 		sequence<YoRegistryDefinition, 1024> registries;
 		sequence<YoVariableDefinition, 32767> variables;
